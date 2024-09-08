@@ -4,6 +4,7 @@ import (
 	"context"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	"urlshortner/config"
 	"urlshortner/constants"
 )
 
@@ -31,9 +32,9 @@ func CreateLoggerWithCtx(ctx context.Context) *zap.SugaredLogger {
 		logger.Debugf("created logger, count: %d", countTest)
 	}
 
-	if ctx != nil && ctx.Value(constants.TRACE_ID).(string) != "" {
-		traceId := ctx.Value(constants.TRACE_ID)
-		return logger.WithOptions(zap.Fields(zap.String(string(constants.TRACE_ID), traceId.(string)), zap.String(string(constants.SERVICE), constants.SERVICE)))
+	if ctx != nil && ctx.Value(constants.TRACE_ID) != nil {
+		traceId := ctx.Value(constants.TRACE_ID).(string)
+		return logger.WithOptions(zap.Fields(zap.String(constants.TRACE_ID, traceId), zap.String(constants.SERVICE, constants.SERVICE_NAME)))
 	}
 
 	return logger
@@ -63,7 +64,7 @@ func CreateLogger() *zap.SugaredLogger {
 }
 
 func GetLevel() zap.AtomicLevel {
-	switch constants.LOG_LEVEL {
+	switch config.LOG_LEVEL {
 	case "debug":
 		return zap.NewAtomicLevelAt(zap.DebugLevel)
 	case "info":

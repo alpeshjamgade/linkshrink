@@ -8,7 +8,9 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"urlshortner/config"
 	"urlshortner/constants"
+
 	handler "urlshortner/handler/urls"
 	"urlshortner/logger"
 	repo "urlshortner/repo/urls"
@@ -21,6 +23,12 @@ const (
 )
 
 func Start() {
+
+	err := config.LoadConf()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
 	ctx := context.WithValue(context.Background(), constants.TRACE_ID, utils.GetUUID())
 	ctx, stop := signal.NotifyContext(ctx, os.Interrupt, syscall.SIGTERM)
@@ -35,6 +43,7 @@ func Start() {
 	r := mux.NewRouter()
 	urlsHandler.SetupRoutes(r)
 	go func() {
+		log.Infof("Starting server on port %s", http_port)
 		http.ListenAndServe(fmt.Sprintf(":%s", http_port), r)
 	}()
 

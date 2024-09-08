@@ -1,11 +1,9 @@
 package constants
 
 const (
-	ENV          = ""
 	TRACE_ID     = "trace-id"
-	SERVICE      = ""
-	SERVICE_NAME = ""
+	SERVICE      = "service"
+	SERVICE_NAME = "url-shortner"
 	EMPTY        = ""
 	LOG_ENCODING = "json"
-	LOG_LEVEL    = "info"
 )
