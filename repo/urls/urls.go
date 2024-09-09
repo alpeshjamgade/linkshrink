@@ -7,7 +7,7 @@ import (
 	"urlshortner/models"
 )
 
-func (repo *UrlsRepo) ListUrls(ctx context.Context) ([]models.Url, error) {
+func (repo *UrlsRepo) GetAllUrls(ctx context.Context) ([]models.Url, error) {
 	log := logger.CreateLoggerWithCtx(ctx)
 	var urls []models.Url
 	sqlRow, err := repo.db.DB().Queryx("SELECT * FROM urls ORDER BY id DESC")

@@ -10,7 +10,7 @@ import (
 )
 
 type IUrlsRepo interface {
-	ListUrls(ctx context.Context) ([]models.Url, error)
+	GetAllUrls(ctx context.Context) ([]models.Url, error)
 	AddUrl(ctx context.Context, url models.Url) error
 	GetUrlWithShortUrl(ctx context.Context, url string) (string, error)
 }

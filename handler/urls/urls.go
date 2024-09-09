@@ -10,20 +10,20 @@ import (
 	"urlshortner/utils"
 )
 
-func (h *UrlsHandler) ListUrls(w http.ResponseWriter, r *http.Request) {
+func (h *UrlsHandler) GetAllUrls(w http.ResponseWriter, r *http.Request) {
 	ctx := context.WithValue(r.Context(), constants.TRACE_ID, utils.GetUUID())
 
-	data, err := h.service.ListUrls(ctx)
+	result, err := h.service.GetAllUrls(ctx)
+
 	if err != nil {
 		utils.ErrorJSON(w, err, http.StatusBadRequest)
+		return
 	}
 
-	payload := utils.HTTPResponse{
-		Data:   data,
-		Status: http.StatusText(http.StatusOK),
-	}
+	res := utils.HTTPResponse{Data: result, Status: "success", Message: ""}
 
-	utils.WriteJSON(w, http.StatusOK, payload)
+	utils.WriteJSON(w, http.StatusOK, res)
+	return
 
 }
 
@@ -63,10 +63,6 @@ func (h *UrlsHandler) AddUrl(w http.ResponseWriter, r *http.Request) {
 
 func (h *UrlsHandler) GetUrl(w http.ResponseWriter, r *http.Request) {
 	ctx := context.WithValue(r.Context(), constants.TRACE_ID, utils.GetUUID())
-
-	type requestPayload struct {
-		ShortUrl string `json:"short_url"`
-	}
 
 	res := utils.HTTPResponse{Data: map[string]string{}, Status: "success", Message: ""}
 	req := mux.Vars(r)
