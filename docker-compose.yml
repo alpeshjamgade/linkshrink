@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: urlshortner
+    volumes:
+      - ./_data/postgres_data:/var/lib/postgresql/data
+      - ./_data/init/:/docker-entrypoint-initdb.d/
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+
+  urlshortner:
+    image: alpeshjamgade/url-shortner:release
+    volumes:
+      - "./config/prod-config.yaml:/etc/urlshortner/config.yaml"
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "8080:8080"
+
