@@ -5,5 +5,5 @@ const (
 	SERVICE      = "service"
 	SERVICE_NAME = "url-shortner"
 	EMPTY        = ""
-	LOG_ENCODING = "json"
+	LOG_ENCODING = "console"
 )

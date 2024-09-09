@@ -11,6 +11,8 @@ import (
 
 type IUrlsRepo interface {
 	ListUrls(ctx context.Context) ([]models.Url, error)
+	AddUrl(ctx context.Context, url models.Url) error
+	GetUrlWithShortUrl(ctx context.Context, url string) (string, error)
 }
 
 type UrlsRepo struct {
@@ -23,4 +25,4 @@ func NewUrlsRepo(db db.DB, cache cache.ICache) *UrlsRepo {
 	return repo
 }
 
-func (repo UrlsRepo) GetCache() cache.ICache { return repo.cache }
+func (repo *UrlsRepo) GetCache() cache.ICache { return repo.cache }

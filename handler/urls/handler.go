@@ -17,4 +17,6 @@ func NewUrlsHandler(service urls.IUrlService) *UrlsHandler {
 
 func (h *UrlsHandler) SetupRoutes(r *mux.Router) {
 	r.HandleFunc("/urls", h.ListUrls).Methods(http.MethodGet)
+	r.HandleFunc("/urls", h.AddUrl).Methods(http.MethodPost)
+	r.HandleFunc("/url/{short_url}", h.GetUrl).Methods(http.MethodGet)
 }

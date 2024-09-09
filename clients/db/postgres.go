@@ -47,7 +47,7 @@ func (p *PostgresDB) Connect(ctx context.Context) error {
 		log.Errorw("erorr connecting postgres", "err", err)
 		return err
 	}
-	log.Infof("connected to postgres")
+	log.Infof("connected to postgres  %s", dbUrl)
 
 	p.Sqlx.SetMaxIdleConns(1000)
 	p.Sqlx.SetMaxOpenConns(5000)

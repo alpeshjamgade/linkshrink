@@ -16,7 +16,8 @@ func CreateLoggerWithCtx(ctx context.Context) *zap.SugaredLogger {
 		encoderCfg := zap.NewProductionEncoderConfig()
 		encoderCfg.TimeKey = "timestamp"
 		encoderCfg.EncodeTime = zapcore.ISO8601TimeEncoder
-		config := zap.Config{
+		encoderCfg.EncodeLevel = zapcore.CapitalColorLevelEncoder
+		cfg := zap.Config{
 			Level:             GetLevel(),
 			Development:       false,
 			DisableCaller:     false,
@@ -27,7 +28,7 @@ func CreateLoggerWithCtx(ctx context.Context) *zap.SugaredLogger {
 			OutputPaths:       []string{"stderr"},
 			ErrorOutputPaths:  []string{"stderr"},
 		}
-		logger = zap.Must(config.Build()).Sugar()
+		logger = zap.Must(cfg.Build()).Sugar()
 		countTest++
 		logger.Debugf("created logger, count: %d", countTest)
 	}

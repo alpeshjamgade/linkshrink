@@ -3,16 +3,17 @@ package utils
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 )
 
 type HTTPResponse struct {
-	Error   HTTPError `json:"error:omitempty"`
-	Data    any       `json:"data:omitempty"`
-	Message string    `json:"message"`
-	Status  string    `json:"status"`
+	Data    any    `json:"data,omitempty"`
+	Message string `json:"message"`
+	Status  string `json:"status"`
 }
+
 type HTTPError struct {
 	Code    int    `json:"code"`
 	Message string `json:"message"`
@@ -29,6 +30,7 @@ func ReadJSON(w http.ResponseWriter, r *http.Request, data any) error {
 
 	r.Body = http.MaxBytesReader(w, r.Body, int64(maxBytes))
 
+	fmt.Println(r.Body)
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(data)
 	if err != nil {
