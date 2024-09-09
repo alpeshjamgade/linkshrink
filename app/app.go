@@ -8,6 +8,8 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"urlshortner/clients/cache"
+	"urlshortner/clients/db"
 	"urlshortner/config"
 	"urlshortner/constants"
 
@@ -36,7 +38,8 @@ func Start() {
 
 	log := logger.CreateLoggerWithCtx(ctx)
 
-	urlsRepo := repo.NewUrlsRepo()
+	db, cache := getClients(ctx)
+	urlsRepo := repo.NewUrlsRepo(db, cache)
 	urlsService := service.NewUrlsService(urlsRepo)
 	urlsHandler := handler.NewUrlsHandler(urlsService)
 
@@ -49,4 +52,21 @@ func Start() {
 
 	<-ctx.Done()
 	log.Info("Shutting down server...")
+}
+
+func getClients(ctx context.Context) (db.DB, cache.ICache) {
+	log := logger.CreateLoggerWithCtx(ctx)
+
+	db := db.NewPostgresDB(config.DB_HOST, config.DB_PORT, config.DB_USERNAME, config.DB_PASSWORD, config.DB_NAME)
+	err := db.Connect(ctx)
+	if err != nil {
+		log.Errorf("Error connecting to database: %v", err)
+	}
+
+	cache := cache.NewRedisCache(config.REDIS_HOST, config.REDIS_PORT)
+	if err := cache.Connect(ctx); err != nil {
+		log.Errorf("Error connecting to database: %v", err)
+	}
+
+	return db, cache
 }

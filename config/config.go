@@ -7,25 +7,18 @@ import (
 	"github.com/spf13/viper"
 )
 
-var defaultConf = []byte(`
-	http_port: "1721"
-	redis_host: "127.0.0.1"
-	redis_port: "6379"
-	redis_cluster: true
-	db_host: "127.0.0.1"
-	db_port: "5432"
-	trace_id: ""
-	log_level: "info"
-`)
-
 var (
 	// *core
-	HTTP_PORT     string = "1212"
-	REDIS_HOST    string = "127.0.0.1"
-	REDIS_PORT    string = "6379"
-	REDIS_CLUSTER bool   = false
-	DB_HOST       string = "127.0.0.1"
-	DB_PORT       string = "5432"
+	HTTP_PORT       string = "1212"
+	REDIS_HOST      string = "127.0.0.1"
+	REDIS_PORT      string = "6379"
+	REDIS_CLUSTER   bool   = false
+	REDIS_POOL_SIZE int    = 10
+	DB_HOST         string = "127.0.0.1"
+	DB_PORT         string = "5432"
+	DB_USERNAME     string = "postgres"
+	DB_PASSWORD     string = "postgres"
+	DB_NAME         string = "urlshortner"
 
 	// *log
 	LOG_LEVEL string = "info"
@@ -54,8 +47,12 @@ func LoadConf(confPath ...string) error {
 	REDIS_HOST = viper.GetString("redis_host")
 	REDIS_PORT = viper.GetString("redis_port")
 	REDIS_CLUSTER = viper.GetBool("redis_cluster")
+	REDIS_POOL_SIZE = viper.GetInt("redis_pool_size")
 	DB_HOST = viper.GetString("db_host")
 	DB_PORT = viper.GetString("db_port")
+	DB_USERNAME = viper.GetString("db_username")
+	DB_PASSWORD = viper.GetString("db_password")
+	DB_NAME = viper.GetString("db_name")
 
 	// log
 	LOG_LEVEL = viper.GetString("log_level")

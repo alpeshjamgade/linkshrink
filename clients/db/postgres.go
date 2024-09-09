@@ -49,12 +49,12 @@ func (p *PostgresDB) Connect(ctx context.Context) error {
 	}
 	log.Infof("connected to postgres")
 
-	p.Sqlx.SetMaxOpenConns(1000)
+	p.Sqlx.SetMaxIdleConns(1000)
 	p.Sqlx.SetMaxOpenConns(5000)
 	p.Sqlx.SetConnMaxLifetime(2 * time.Minute)
 	return err
 }
 
-func (p *PostgresDB) disconnect() error {
+func (p *PostgresDB) Disconnect() error {
 	return p.Sqlx.Close()
 }
