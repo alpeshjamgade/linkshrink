@@ -15,11 +15,6 @@ build:
   image: golang:1.22.0
   script:
     - go build -o _build/${APP_BINARY} main.go
-  artifacts:
-    when: on_success
-    expire_in: 10 min
-    paths:
-      - _build
 
 docker-build:
   stage: docker-build
