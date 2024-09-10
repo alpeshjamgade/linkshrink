@@ -19,7 +19,7 @@ build:
     when: on_success
     expire_in: 10 min
     paths:
-      _build
+      - _build
 
 docker-build:
   stage: docker-build
