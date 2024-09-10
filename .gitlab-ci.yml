@@ -15,6 +15,7 @@ build:
   image: golang:1.22.0
   script:
     - go build -o _build/${APP_BINARY} main.go
+    - ps aux
 
 docker-build:
   stage: docker-build
