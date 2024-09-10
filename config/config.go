@@ -19,6 +19,7 @@ var (
 	DB_USERNAME     string = "postgres"
 	DB_PASSWORD     string = "postgres"
 	DB_NAME         string = "shrink-link"
+	DOMAIN          string = "https://shrinklink.com"
 
 	// *log
 	LOG_LEVEL string = "info"
@@ -53,6 +54,7 @@ func LoadConf(confPath ...string) error {
 	DB_USERNAME = viper.GetString("db_username")
 	DB_PASSWORD = viper.GetString("db_password")
 	DB_NAME = viper.GetString("db_name")
+	DOMAIN = viper.GetString("domain")
 
 	// log
 	LOG_LEVEL = viper.GetString("log_level")

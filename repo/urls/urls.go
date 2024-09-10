@@ -30,19 +30,19 @@ func (repo *UrlsRepo) GetAllUrls(ctx context.Context) ([]models.Url, error) {
 }
 
 func (repo *UrlsRepo) AddUrl(_ context.Context, url models.Url) error {
-	_, err := repo.db.DB().Exec("INSERT INTO urls(url, short_url) VALUES ($1, $2)", url.Url, url.ShortUrl)
+	_, err := repo.db.DB().Exec("INSERT INTO urls(url, hash) VALUES ($1, $2)", url.Url, url.Hash)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (repo *UrlsRepo) GetUrlWithShortUrl(_ context.Context, shortUrl string) (string, error) {
+func (repo *UrlsRepo) GetUrlWithHash(_ context.Context, hash string) (string, error) {
 	var url models.Url
-	sqlQuery := `SELECT url FROM urls where short_url=$1`
+	sqlQuery := `SELECT url FROM urls where hash=$1`
 	var sqlRow *sqlx.Row
 
-	sqlRow = repo.db.DB().QueryRowx(sqlQuery, shortUrl)
+	sqlRow = repo.db.DB().QueryRowx(sqlQuery, hash)
 	err := sqlRow.StructScan(&url)
 
 	if err != nil {

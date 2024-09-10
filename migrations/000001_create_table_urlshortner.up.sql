@@ -2,7 +2,7 @@ CREATE TABLE urls
 (
     id          SERIAL PRIMARY KEY,
     url         TEXT        NOT NULL,
-    short_url   TEXT        NOT NULL,
+    hash        TEXT        NOT NULL,
     inserted_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

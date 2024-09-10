@@ -12,7 +12,7 @@ import (
 type IUrlsRepo interface {
 	GetAllUrls(ctx context.Context) ([]models.Url, error)
 	AddUrl(ctx context.Context, url models.Url) error
-	GetUrlWithShortUrl(ctx context.Context, url string) (string, error)
+	GetUrlWithHash(ctx context.Context, hash string) (string, error)
 }
 
 type UrlsRepo struct {

@@ -3,30 +3,44 @@ package urls
 import (
 	"context"
 	"encoding/base64"
+	"fmt"
+	"shrink-link/config"
 	"shrink-link/logger"
 	"shrink-link/models"
 )
 
-func (srv *UrlService) GetAllUrls(ctx context.Context) ([]models.Url, error) {
+func (srv *UrlService) GetAllUrls(ctx context.Context) ([]map[string]string, error) {
 
 	urls, err := srv.repo.GetAllUrls(ctx)
+	result := make([]map[string]string, len(urls))
+	for i, url := range urls {
+		result[i] = map[string]string{
+			"url":       url.Url,
+			"short_url": fmt.Sprintf("%s/%s", config.DOMAIN, url.Hash),
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
-	return urls, nil
+	return result, nil
 }
 
 func (srv *UrlService) AddUrl(ctx context.Context, url string) (string, error) {
-	urlPayload := models.Url{Url: url}
-	shortUrl, err := createShortUrl(ctx, url)
+	urlPayload := models.Url{}
+
+	hash, err := createShortUrl(ctx, url)
 	if err != nil {
 		return "", err
 	}
-	urlPayload.ShortUrl = shortUrl
-	err = srv.repo.AddUrl(ctx, urlPayload)
-	if err != nil {
+
+	urlPayload.Url = url
+	urlPayload.Hash = hash
+
+	if err = srv.repo.AddUrl(ctx, urlPayload); err != nil {
 		return "", err
 	}
+
+	shortUrl := fmt.Sprintf("%s/%s", config.DOMAIN, hash)
 	return shortUrl, nil
 }
 
@@ -39,8 +53,8 @@ func createShortUrl(ctx context.Context, url string) (string, error) {
 	return encoded, nil
 }
 
-func (srv *UrlService) GetUrlWithShortUrl(ctx context.Context, shortUrl string) (string, error) {
-	url, err := srv.repo.GetUrlWithShortUrl(ctx, shortUrl)
+func (srv *UrlService) GetUrlWithHash(ctx context.Context, hash string) (string, error) {
+	url, err := srv.repo.GetUrlWithHash(ctx, hash)
 	if err != nil {
 		return "", err
 	}

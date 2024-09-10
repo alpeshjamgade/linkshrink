@@ -2,7 +2,6 @@ package urls
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"shrink-link/constants"
 	"shrink-link/logger"
@@ -52,11 +51,9 @@ func (h *UrlsHandler) AddUrl(w http.ResponseWriter, r *http.Request) {
 	}
 
 	response := utils.HTTPResponse{}
-
 	response.Status = http.StatusText(http.StatusOK)
-	response.Data = map[string]string{"url": shortUrl}
+	response.Data = map[string]string{"short_url": shortUrl}
 	response.Message = "Successfully generated short url"
-	fmt.Println(response)
 	utils.WriteJSON(w, http.StatusOK, response)
 	return
 
@@ -67,7 +64,7 @@ func (h *UrlsHandler) GetUrl(w http.ResponseWriter, r *http.Request) {
 
 	res := utils.HTTPResponse{Data: map[string]string{}, Status: "success", Message: ""}
 	req := mux.Vars(r)
-	url, err := h.service.GetUrlWithShortUrl(ctx, req["short_url"])
+	url, err := h.service.GetUrlWithHash(ctx, req["short_url"])
 	if err != nil {
 		res.Status = "error"
 		res.Message = "Error while fetching url"

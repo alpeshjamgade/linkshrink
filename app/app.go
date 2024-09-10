@@ -21,10 +21,6 @@ import (
 	"shrink-link/utils"
 )
 
-const (
-	http_port = "8080"
-)
-
 func Start() {
 
 	err := config.LoadConf()
@@ -47,8 +43,8 @@ func Start() {
 	r := mux.NewRouter()
 	urlsHandler.SetupRoutes(r)
 	go func() {
-		log.Infof("Starting server on port %s", http_port)
-		http.ListenAndServe(fmt.Sprintf(":%s", http_port), r)
+		log.Infof("Starting server on port %s", config.HTTP_PORT)
+		http.ListenAndServe(fmt.Sprintf(":%s", config.HTTP_PORT), r)
 	}()
 
 	<-ctx.Done()

@@ -6,5 +6,7 @@ db_username: "postgres"
 db_password: "postgres"
 db_port: "5432"
 db_name: "shrinklink"
+domain: "http://localhost:1212"
+
 log_level: "info"
 log_encoding: "json"
