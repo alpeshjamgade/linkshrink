@@ -38,6 +38,9 @@ docker-build:
 docker-push:
   stage: docker-push
   image: $DOCKER_IMAGE
+  services:
+    - name: $DOCKER_DIND_IMAGE
+      alias: docker
   script:
     - docker push $IMAGE_NAME
     - echo $IMAGE_NAME
