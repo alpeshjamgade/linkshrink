@@ -3,7 +3,6 @@ package utils
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"net/http"
 )
@@ -30,7 +29,6 @@ func ReadJSON(w http.ResponseWriter, r *http.Request, data any) error {
 
 	r.Body = http.MaxBytesReader(w, r.Body, int64(maxBytes))
 
-	fmt.Println(r.Body)
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(data)
 	if err != nil {
