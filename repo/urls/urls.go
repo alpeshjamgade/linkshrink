@@ -2,6 +2,9 @@ package urls
 
 import (
 	"context"
+	"errors"
+	"fmt"
+	"github.com/lib/pq"
 	"shrinklink/logger"
 	"shrinklink/models"
 
@@ -29,9 +32,13 @@ func (repo *UrlsRepo) GetAllUrls(ctx context.Context) ([]models.Url, error) {
 	return urls, nil
 }
 
-func (repo *UrlsRepo) AddUrl(_ context.Context, url models.Url) error {
-	_, err := repo.db.DB().Exec("INSERT INTO urls(url, hash) VALUES ($1, $2)", url.Url, url.Hash)
+func (repo *UrlsRepo) AddUrl(ctx context.Context, url models.Url) error {
+	_, err := repo.db.DB().ExecContext(ctx, "INSERT INTO urls(url, hash) VALUES ($1, $2)", url.Url, url.Hash)
 	if err != nil {
+		var pgErr *pq.Error
+		if errors.As(err, &pgErr) && pgErr.Code == "23505" {
+			return fmt.Errorf("url already exists")
+		}
 		return err
 	}
 	return nil

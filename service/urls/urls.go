@@ -2,10 +2,8 @@ package urls
 
 import (
 	"context"
-	"encoding/base64"
 	"fmt"
 	"shrinklink/config"
-	"shrinklink/logger"
 	"shrinklink/models"
 	"shrinklink/utils"
 )

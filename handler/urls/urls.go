@@ -34,19 +34,22 @@ func (h *UrlsHandler) AddUrl(w http.ResponseWriter, r *http.Request) {
 		Url string `json:"url"`
 	}
 	req := &requestPayload{}
+	res := utils.HTTPResponse{Data: map[string]string{}, Status: "success", Message: ""}
 
 	err := utils.ReadJSON(w, r, req)
 	if err != nil {
 		log.Errorw("Error while reading request", "error", err.Error())
-		response := utils.HTTPResponse{Data: map[string]string{}, Status: "error", Message: "Invalid request"}
-		utils.WriteJSON(w, http.StatusBadRequest, response)
+		res.Status = "error"
+		res.Message = "Invalid request"
+		utils.WriteJSON(w, http.StatusBadRequest, res)
 		return
 	}
 
 	shortUrl, err := h.service.AddUrl(ctx, req.Url)
 	if err != nil {
-		log.Errorw("Error while adding url", "error", err)
-		utils.WriteJSON(w, http.StatusBadRequest, err.Error())
+		res.Status = "error"
+		res.Message = err.Error()
+		utils.WriteJSON(w, http.StatusBadRequest, res)
 		return
 	}
 
