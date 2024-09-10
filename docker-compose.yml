@@ -17,7 +17,7 @@ services:
       - "6379:6379"
 
   linkshrink:
-    image: alpeshjamgade/url-shortner:release
+    image: alpeshjamgade/linkshrink:release
     volumes:
       - "./config/prod-config.yaml:/etc/linkshrink/config.yaml"
     depends_on:

@@ -13,11 +13,12 @@ run: build
 
 docker-build:
 	@echo "Building docker image..."
-	docker build -f Dockerfile -t alpeshjamgade/url-shortner:${TAG} .
-	@echo "Done!!, Image: registry.tradelab.in/url-shortner:${TAG}"
+	docker build -f Dockerfile -t alpeshjamgade/linkshrink:${TAG} .
+	@echo "Done!!, Image: alpeshjamgade/linkshrink:${TAG}"
 
 migration_create:
 	migrate create -ext sql -dir ${MIGRATION_PATH} -seq ${name}
+
 migration_up:
 	migrate -path ${MIGRATION_PATH} -database ${DATABASE_URL} -verbose up
 
