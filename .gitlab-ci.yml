@@ -1,0 +1,44 @@
+stages:
+  - build
+  - docker-build
+  - docker-push
+
+variables:
+  APP_NAME: $CI_PROJECT_NAME
+  REGISTRY_URL: alpeshjamgade
+  IMAGE_NAME: $REGISTRY_URL/$APP_NAME:$CI_COMMIT_REF_NAME
+  DOCKER_IMAGE: docker:20.10.22
+  DOCKER_DIND_IMAGE: docker:dind@20.10.22
+
+
+build:
+  stage: build
+  script:
+    - go build main.go -o _build/linkshrinkApp
+  artifacts:
+    when: on_success
+    expire_in: 10 min
+    paths:
+      _build
+
+docker-build:
+  stage: docker-build
+  image: $DOCKER_IMAGE
+  script:
+    - docker build -f Dockerfile -t $IMAGE_NAME .
+    - echo $IMAGE_NAME
+  dependencies: ["build"]
+  needs: ["build"]
+  only:
+    - tags
+
+docker-push:
+  stage: docker-push
+  image: $DOCKER_IMAGE
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login $REGISTRY_URL -u "$CI_REGISTRY_USER" --password-stdin
+  script:
+    - docker push $IMAGE_NAME
+    - echo $IMAGE_NAME
+  after_script:
+    - docker logout $REGISTRY_URL
