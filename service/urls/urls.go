@@ -7,6 +7,7 @@ import (
 	"shrinklink/config"
 	"shrinklink/logger"
 	"shrinklink/models"
+	"shrinklink/utils"
 )
 
 func (srv *UrlService) GetAllUrls(ctx context.Context) ([]map[string]string, error) {
@@ -28,29 +29,18 @@ func (srv *UrlService) GetAllUrls(ctx context.Context) ([]map[string]string, err
 func (srv *UrlService) AddUrl(ctx context.Context, url string) (string, error) {
 	urlPayload := models.Url{}
 
-	hash, err := createShortUrl(ctx, url)
-	if err != nil {
-		return "", err
-	}
+	//hash := utils.GenerateHash(url)
+	hash := utils.GenerateCRC32Hash(url)
 
 	urlPayload.Url = url
 	urlPayload.Hash = hash
 
-	if err = srv.repo.AddUrl(ctx, urlPayload); err != nil {
+	if err := srv.repo.AddUrl(ctx, urlPayload); err != nil {
 		return "", err
 	}
 
 	shortUrl := fmt.Sprintf("%s/%s", config.DOMAIN, hash)
 	return shortUrl, nil
-}
-
-func createShortUrl(ctx context.Context, url string) (string, error) {
-	dataBytes := []byte(url)
-	encoded := base64.StdEncoding.EncodeToString(dataBytes)
-	log := logger.CreateLoggerWithCtx(ctx)
-	log.Infof(encoded)
-
-	return encoded, nil
 }
 
 func (srv *UrlService) GetUrlWithHash(ctx context.Context, hash string) (string, error) {
