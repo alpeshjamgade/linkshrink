@@ -10,7 +10,6 @@ variables:
   DOCKER_IMAGE: docker:20.10.22
   DOCKER_DIND_IMAGE: docker:dind@20.10.22
 
-
 build:
   stage: build
   image: golang:1.22.0
@@ -25,6 +24,9 @@ build:
 docker-build:
   stage: docker-build
   image: $DOCKER_IMAGE
+  services:
+    - name: $DOCKER_DIND_IMAGE
+      alias: docker
   script:
     - docker build -f Dockerfile -t $IMAGE_NAME .
     - echo $IMAGE_NAME
