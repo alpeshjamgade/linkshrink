@@ -4,7 +4,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: shrink-link
+      POSTGRES_DB: shrinklink
     volumes:
       - ./_data/postgres_data:/var/lib/postgresql/data
       - ./_data/init/:/docker-entrypoint-initdb.d/
@@ -16,10 +16,10 @@ services:
     ports:
       - "6379:6379"
 
-  shrink-link:
-    image: alpeshjamgade/shrink-link:release
+  shrinklink:
+    image: alpeshjamgade/shrinklink:release
     volumes:
-      - "./config/prod-config.yaml:/etc/shrink-link/config.yaml"
+      - "./config/prod-config.yaml:/etc/shrinklink/config.yaml"
     depends_on:
       - postgres
       - redis

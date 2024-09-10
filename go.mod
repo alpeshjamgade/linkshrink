@@ -1,4 +1,4 @@
-module shrink-link
+module shrinklink
 
 go 1.22.0
 
