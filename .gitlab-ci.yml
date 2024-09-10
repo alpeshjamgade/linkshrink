@@ -44,3 +44,5 @@ docker-push:
     - echo $IMAGE_NAME
   after_script:
     - docker logout $REGISTRY_URL
+  only:
+    - tags
