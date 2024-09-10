@@ -1,4 +1,4 @@
-module urlshortner
+module linkshrink
 
 go 1.22.0
 

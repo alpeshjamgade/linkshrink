@@ -4,8 +4,8 @@ import (
 	"context"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"urlshortner/config"
-	"urlshortner/constants"
+	"linkshrink/config"
+	"linkshrink/constants"
 )
 
 var logger *zap.SugaredLogger

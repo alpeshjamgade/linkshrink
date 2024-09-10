@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 	"github.com/gorilla/mux"
+	"linkshrink/constants"
+	"linkshrink/logger"
+	"linkshrink/utils"
 	"net/http"
-	"urlshortner/constants"
-	"urlshortner/logger"
-	"urlshortner/utils"
 )
 
 func (h *UrlsHandler) GetAllUrls(w http.ResponseWriter, r *http.Request) {

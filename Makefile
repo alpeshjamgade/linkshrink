@@ -1,14 +1,14 @@
-APP_BINARY=urlShortnerApp
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/urlshortner?sslmode=disable"
+APP_BINARY=linkshrinkApp
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/linkshrink?sslmode=disable"
 MIGRATION_PATH="./migrations/"
 
 build:
-	@echo "Building urlshortner..."
+	@echo "Building linkshrink..."
 	CGO_ENABLED=0 go build -o _build/${APP_BINARY} main.go
 	@echo "Done!"
 
 run: build
-	@echo "Starting urlshortner..."
+	@echo "Starting linkshrink..."
 	./_build/${APP_BINARY}
 
 docker-build:

@@ -2,9 +2,9 @@ package urls
 
 import (
 	"context"
-	"urlshortner/clients/cache"
-	"urlshortner/clients/db"
-	"urlshortner/models"
+	"linkshrink/clients/cache"
+	"linkshrink/clients/db"
+	"linkshrink/models"
 
 	_ "github.com/lib/pq"
 )

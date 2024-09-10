@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"github.com/bsm/redislock"
 	"github.com/go-redis/redis/v8"
+	"linkshrink/config"
+	"linkshrink/logger"
 	"sync"
 	"time"
-	"urlshortner/config"
-	"urlshortner/logger"
 )
 
 type ICache interface {

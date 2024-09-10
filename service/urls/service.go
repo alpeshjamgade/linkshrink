@@ -2,8 +2,8 @@ package urls
 
 import (
 	"context"
-	"urlshortner/models"
-	"urlshortner/repo/urls"
+	"linkshrink/models"
+	"linkshrink/repo/urls"
 )
 
 type IUrlService interface {

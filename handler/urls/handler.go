@@ -2,8 +2,8 @@ package urls
 
 import (
 	"github.com/gorilla/mux"
+	"linkshrink/service/urls"
 	"net/http"
-	"urlshortner/service/urls"
 )
 
 type UrlsHandler struct {

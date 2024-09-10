@@ -6,15 +6,15 @@ COPY . /app
 
 WORKDIR /app
 
-RUN CGO_ENABLED=0 go build -o urlShortnerApp .
+RUN CGO_ENABLED=0 go build -o linkshrinkApp .
 
-RUN chmod +x urlShortnerApp
+RUN chmod +x linkshrinkApp
 
 # build a tiny docker image
 FROM alpine:latest
 
 RUN mkdir /app
 
-COPY --from=builder /app/urlShortnerApp /app
+COPY --from=builder /app/linkshrinkApp /app
 
-CMD ["/app/urlShortnerApp"]
+CMD ["/app/linkshrinkApp"]

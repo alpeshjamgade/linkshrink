@@ -1,6 +1,6 @@
 package main
 
-import "urlshortner/app"
+import "linkshrink/app"
 
 func main() {
 	app.Start()

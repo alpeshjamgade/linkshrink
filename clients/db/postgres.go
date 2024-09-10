@@ -3,8 +3,8 @@ package db
 import (
 	"context"
 	"fmt"
+	"linkshrink/logger"
 	"time"
-	"urlshortner/logger"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"

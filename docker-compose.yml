@@ -4,7 +4,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: urlshortner
+      POSTGRES_DB: linkshrink
     volumes:
       - ./_data/postgres_data:/var/lib/postgresql/data
       - ./_data/init/:/docker-entrypoint-initdb.d/
@@ -16,10 +16,10 @@ services:
     ports:
       - "6379:6379"
 
-  urlshortner:
+  linkshrink:
     image: alpeshjamgade/url-shortner:release
     volumes:
-      - "./config/prod-config.yaml:/etc/urlshortner/config.yaml"
+      - "./config/prod-config.yaml:/etc/linkshrink/config.yaml"
     depends_on:
       - postgres
       - redis
