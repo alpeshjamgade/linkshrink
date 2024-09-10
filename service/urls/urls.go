@@ -4,9 +4,9 @@ import (
 	"context"
 	"encoding/base64"
 	"fmt"
-	"shrink-link/config"
-	"shrink-link/logger"
-	"shrink-link/models"
+	"shrinklink/config"
+	"shrinklink/logger"
+	"shrinklink/models"
 )
 
 func (srv *UrlService) GetAllUrls(ctx context.Context) ([]map[string]string, error) {

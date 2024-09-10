@@ -18,7 +18,7 @@ var (
 	DB_PORT         string = "5432"
 	DB_USERNAME     string = "postgres"
 	DB_PASSWORD     string = "postgres"
-	DB_NAME         string = "shrink-link"
+	DB_NAME         string = "shrinklink"
 	DOMAIN          string = "https://shrinklink.com"
 
 	// *log
@@ -28,12 +28,12 @@ var (
 func LoadConf(confPath ...string) error {
 	viper.SetConfigType("yaml")
 	viper.AutomaticEnv()
-	viper.SetEnvPrefix("shrink-link")
+	viper.SetEnvPrefix("shrinklink")
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 	viper.AddConfigPath("config")
-	viper.AddConfigPath("./etc/shrink-link")
-	viper.AddConfigPath("$HOME/.shrink-link")
+	viper.AddConfigPath("./etc/shrinklink")
+	viper.AddConfigPath("$HOME/.shrinklink")
 	viper.AddConfigPath(".")
 	viper.SetConfigName("config")
 

@@ -3,7 +3,7 @@ package db
 import (
 	"context"
 	"fmt"
-	"shrink-link/logger"
+	"shrinklink/logger"
 	"time"
 
 	"github.com/jmoiron/sqlx"

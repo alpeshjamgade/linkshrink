@@ -2,7 +2,7 @@ package urls
 
 import (
 	"context"
-	"shrink-link/repo/urls"
+	"shrinklink/repo/urls"
 )
 
 type IUrlService interface {

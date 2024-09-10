@@ -2,7 +2,7 @@ package urls
 
 import (
 	"net/http"
-	"shrink-link/service/urls"
+	"shrinklink/service/urls"
 
 	"github.com/gorilla/mux"
 )

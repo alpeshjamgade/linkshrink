@@ -3,8 +3,8 @@ package cache
 import (
 	"context"
 	"encoding/json"
-	"shrink-link/config"
-	"shrink-link/logger"
+	"shrinklink/config"
+	"shrinklink/logger"
 	"time"
 )
 

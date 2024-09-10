@@ -1,6 +1,6 @@
 package main
 
-import "shrink-link/app"
+import "shrinklink/app"
 
 func main() {
 	app.Start()

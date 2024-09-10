@@ -6,19 +6,19 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"shrink-link/clients/cache"
-	"shrink-link/clients/db"
-	"shrink-link/config"
-	"shrink-link/constants"
+	"shrinklink/clients/cache"
+	"shrinklink/clients/db"
+	"shrinklink/config"
+	"shrinklink/constants"
 	"syscall"
 
 	"github.com/gorilla/mux"
 
-	handler "shrink-link/handler/urls"
-	"shrink-link/logger"
-	repo "shrink-link/repo/urls"
-	service "shrink-link/service/urls"
-	"shrink-link/utils"
+	handler "shrinklink/handler/urls"
+	"shrinklink/logger"
+	repo "shrinklink/repo/urls"
+	service "shrinklink/service/urls"
+	"shrinklink/utils"
 )
 
 func Start() {

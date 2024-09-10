@@ -3,8 +3,8 @@ package cache
 import (
 	"context"
 	"fmt"
-	"shrink-link/config"
-	"shrink-link/logger"
+	"shrinklink/config"
+	"shrinklink/logger"
 	"sync"
 	"time"
 

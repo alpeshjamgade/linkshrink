@@ -2,8 +2,8 @@ package urls
 
 import (
 	"context"
-	"shrink-link/logger"
-	"shrink-link/models"
+	"shrinklink/logger"
+	"shrinklink/models"
 
 	"github.com/jmoiron/sqlx"
 )

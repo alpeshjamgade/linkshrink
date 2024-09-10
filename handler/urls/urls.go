@@ -3,9 +3,9 @@ package urls
 import (
 	"context"
 	"net/http"
-	"shrink-link/constants"
-	"shrink-link/logger"
-	"shrink-link/utils"
+	"shrinklink/constants"
+	"shrinklink/logger"
+	"shrinklink/utils"
 
 	"github.com/gorilla/mux"
 )
