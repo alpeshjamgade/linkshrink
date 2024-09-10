@@ -1,5 +1,5 @@
 APP_BINARY=shrink-linkApp
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/shrink-link?sslmode=disable"
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/shrinklink?sslmode=disable"
 MIGRATION_PATH="./migrations/"
 
 build:
