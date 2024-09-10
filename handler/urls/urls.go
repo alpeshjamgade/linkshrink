@@ -64,7 +64,6 @@ func (h *UrlsHandler) AddUrl(w http.ResponseWriter, r *http.Request) {
 
 func (h *UrlsHandler) GetUrl(w http.ResponseWriter, r *http.Request) {
 	ctx := context.WithValue(r.Context(), constants.TRACE_ID, utils.GetUUID())
-
 	res := utils.HTTPResponse{Data: map[string]string{}, Status: "success", Message: ""}
 	req := mux.Vars(r)
 	url, err := h.service.GetUrlWithHash(ctx, req["short_url"])
