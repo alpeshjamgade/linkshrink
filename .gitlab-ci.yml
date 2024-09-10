@@ -5,6 +5,7 @@ stages:
 
 variables:
   APP_NAME: $CI_PROJECT_NAME
+  APP_BINARY: "${APP_NAME}App"
   REGISTRY_URL: alpeshjamgade
   IMAGE_NAME: $REGISTRY_URL/$APP_NAME:$CI_COMMIT_REF_NAME
   DOCKER_IMAGE: docker:20.10.22
@@ -15,7 +16,7 @@ build:
   stage: build
   image: golang:1.22.0
   script:
-    - go build main.go -o _build/linkshrinkApp
+    - go build -o _build/${APP_BINARY} main.go
   artifacts:
     when: on_success
     expire_in: 10 min
