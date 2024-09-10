@@ -6,7 +6,6 @@ stages:
 variables:
   APP_NAME: $CI_PROJECT_NAME
   APP_BINARY: "${APP_NAME}App"
-  REGISTRY_URL: alpeshjamgade
   IMAGE_NAME: $REGISTRY_URL/$APP_NAME:$CI_COMMIT_REF_NAME
   DOCKER_IMAGE: docker:20.10.22
   DOCKER_DIND_IMAGE: docker:dind@20.10.22
@@ -37,12 +36,8 @@ docker-build:
 docker-push:
   stage: docker-push
   image: $DOCKER_IMAGE
-  before_script:
-    - echo "$CI_REGISTRY_PASSWORD" | docker login $REGISTRY_URL -u "$CI_REGISTRY_USER" --password-stdin
   script:
     - docker push $IMAGE_NAME
     - echo $IMAGE_NAME
-  after_script:
-    - docker logout $REGISTRY_URL
   only:
     - tags
