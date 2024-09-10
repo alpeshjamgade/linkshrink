@@ -2,10 +2,11 @@ package logger
 
 import (
 	"context"
+	"shrink-link/config"
+	"shrink-link/constants"
+
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"linkshrink/config"
-	"linkshrink/constants"
 )
 
 var logger *zap.SugaredLogger

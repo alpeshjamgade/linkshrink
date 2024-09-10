@@ -6,15 +6,15 @@ COPY . /app
 
 WORKDIR /app
 
-RUN CGO_ENABLED=0 go build -o linkshrinkApp .
+RUN CGO_ENABLED=0 go build -o shrink-linkApp .
 
-RUN chmod +x linkshrinkApp
+RUN chmod +x shrink-linkApp
 
 # build a tiny docker image
 FROM alpine:latest
 
 RUN mkdir /app
 
-COPY --from=builder /app/linkshrinkApp /app
+COPY --from=builder /app/shrink-linkApp /app
 
-CMD ["/app/linkshrinkApp"]
+CMD ["/app/shrink-linkApp"]

@@ -3,11 +3,12 @@ package urls
 import (
 	"context"
 	"fmt"
-	"github.com/gorilla/mux"
-	"linkshrink/constants"
-	"linkshrink/logger"
-	"linkshrink/utils"
 	"net/http"
+	"shrink-link/constants"
+	"shrink-link/logger"
+	"shrink-link/utils"
+
+	"github.com/gorilla/mux"
 )
 
 func (h *UrlsHandler) GetAllUrls(w http.ResponseWriter, r *http.Request) {

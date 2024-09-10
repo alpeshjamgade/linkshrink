@@ -2,9 +2,9 @@ package urls
 
 import (
 	"context"
-	"linkshrink/clients/cache"
-	"linkshrink/clients/db"
-	"linkshrink/models"
+	"shrink-link/clients/cache"
+	"shrink-link/clients/db"
+	"shrink-link/models"
 
 	_ "github.com/lib/pq"
 )

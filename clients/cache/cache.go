@@ -3,12 +3,13 @@ package cache
 import (
 	"context"
 	"fmt"
-	"github.com/bsm/redislock"
-	"github.com/go-redis/redis/v8"
-	"linkshrink/config"
-	"linkshrink/logger"
+	"shrink-link/config"
+	"shrink-link/logger"
 	"sync"
 	"time"
+
+	"github.com/bsm/redislock"
+	"github.com/go-redis/redis/v8"
 )
 
 type ICache interface {

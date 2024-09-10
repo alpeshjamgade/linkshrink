@@ -3,8 +3,8 @@ package urls
 import (
 	"context"
 	"encoding/base64"
-	"linkshrink/logger"
-	"linkshrink/models"
+	"shrink-link/logger"
+	"shrink-link/models"
 )
 
 func (srv *UrlService) GetAllUrls(ctx context.Context) ([]models.Url, error) {

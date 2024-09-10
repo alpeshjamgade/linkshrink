@@ -1,4 +1,4 @@
-module linkshrink
+module shrink-link
 
 go 1.22.0
 

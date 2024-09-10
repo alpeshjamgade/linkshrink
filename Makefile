@@ -1,20 +1,20 @@
-APP_BINARY=linkshrinkApp
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/linkshrink?sslmode=disable"
+APP_BINARY=shrink-linkApp
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/shrink-link?sslmode=disable"
 MIGRATION_PATH="./migrations/"
 
 build:
-	@echo "Building linkshrink..."
+	@echo "Building shrink-link..."
 	CGO_ENABLED=0 go build -o _build/${APP_BINARY} main.go
 	@echo "Done!"
 
 run: build
-	@echo "Starting linkshrink..."
+	@echo "Starting shrink-link..."
 	./_build/${APP_BINARY}
 
 docker-build:
 	@echo "Building docker image..."
-	docker build -f Dockerfile -t alpeshjamgade/linkshrink:${TAG} .
-	@echo "Done!!, Image: alpeshjamgade/linkshrink:${TAG}"
+	docker build -f Dockerfile -t alpeshjamgade/shrink-link:${TAG} .
+	@echo "Done!!, Image: alpeshjamgade/shrink-link:${TAG}"
 
 migration_create:
 	migrate create -ext sql -dir ${MIGRATION_PATH} -seq ${name}

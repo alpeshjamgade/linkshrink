@@ -18,7 +18,7 @@ var (
 	DB_PORT         string = "5432"
 	DB_USERNAME     string = "postgres"
 	DB_PASSWORD     string = "postgres"
-	DB_NAME         string = "linkshrink"
+	DB_NAME         string = "shrink-link"
 
 	// *log
 	LOG_LEVEL string = "info"
@@ -27,12 +27,12 @@ var (
 func LoadConf(confPath ...string) error {
 	viper.SetConfigType("yaml")
 	viper.AutomaticEnv()
-	viper.SetEnvPrefix("linkshrink")
+	viper.SetEnvPrefix("shrink-link")
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 	viper.AddConfigPath("config")
-	viper.AddConfigPath("./etc/linkshrink")
-	viper.AddConfigPath("$HOME/.linkshrink")
+	viper.AddConfigPath("./etc/shrink-link")
+	viper.AddConfigPath("$HOME/.shrink-link")
 	viper.AddConfigPath(".")
 	viper.SetConfigName("config")
 

@@ -2,9 +2,10 @@ package urls
 
 import (
 	"context"
+	"shrink-link/logger"
+	"shrink-link/models"
+
 	"github.com/jmoiron/sqlx"
-	"linkshrink/logger"
-	"linkshrink/models"
 )
 
 func (repo *UrlsRepo) GetAllUrls(ctx context.Context) ([]models.Url, error) {

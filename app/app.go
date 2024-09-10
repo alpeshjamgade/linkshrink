@@ -3,21 +3,22 @@ package app
 import (
 	"context"
 	"fmt"
-	"github.com/gorilla/mux"
-	"linkshrink/clients/cache"
-	"linkshrink/clients/db"
-	"linkshrink/config"
-	"linkshrink/constants"
 	"net/http"
 	"os"
 	"os/signal"
+	"shrink-link/clients/cache"
+	"shrink-link/clients/db"
+	"shrink-link/config"
+	"shrink-link/constants"
 	"syscall"
 
-	handler "linkshrink/handler/urls"
-	"linkshrink/logger"
-	repo "linkshrink/repo/urls"
-	service "linkshrink/service/urls"
-	"linkshrink/utils"
+	"github.com/gorilla/mux"
+
+	handler "shrink-link/handler/urls"
+	"shrink-link/logger"
+	repo "shrink-link/repo/urls"
+	service "shrink-link/service/urls"
+	"shrink-link/utils"
 )
 
 const (
