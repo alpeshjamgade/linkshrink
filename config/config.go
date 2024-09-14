@@ -9,20 +9,20 @@ import (
 
 var (
 	// *core
-	HTTP_PORT       string = "1212"
-	REDIS_HOST      string = "127.0.0.1"
-	REDIS_PORT      string = "6379"
-	REDIS_CLUSTER   bool   = false
-	REDIS_POOL_SIZE int    = 10
-	DB_HOST         string = "127.0.0.1"
-	DB_PORT         string = "5432"
-	DB_USERNAME     string = "postgres"
-	DB_PASSWORD     string = "postgres"
-	DB_NAME         string = "shrinklink"
-	DOMAIN          string = "https://shrinklink.com"
+	HTTP_PORT       = "1212"
+	REDIS_HOST      = "127.0.0.1"
+	REDIS_PORT      = "6379"
+	REDIS_CLUSTER   = false
+	REDIS_POOL_SIZE = 10
+	DB_HOST         = "127.0.0.1"
+	DB_PORT         = "5432"
+	DB_USERNAME     = "postgres"
+	DB_PASSWORD     = "postgres"
+	DB_NAME         = "shrinklink"
+	DOMAIN          = "https://shrinklink.com"
 
 	// *log
-	LOG_LEVEL string = "info"
+	LOG_LEVEL = "info"
 )
 
 func LoadConf(confPath ...string) error {
