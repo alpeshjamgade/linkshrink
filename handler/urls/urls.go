@@ -73,7 +73,8 @@ func (h *UrlsHandler) GetUrl(w http.ResponseWriter, r *http.Request) {
 		utils.WriteJSON(w, http.StatusBadRequest, res)
 		return
 	}
-	utils.WriteJSON(w, http.StatusTemporaryRedirect, res, map[string][]string{"Location": {url}})
+	//utils.WriteJSON(w, http.StatusTemporaryRedirect, res, map[string][]string{"Location": {url}})
+	http.Redirect(w, r, url, http.StatusTemporaryRedirect)
 	return
 
 }
