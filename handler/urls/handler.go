@@ -19,7 +19,7 @@ func NewUrlsHandler(service urls.IUrlService) *UrlsHandler {
 
 func (h *UrlsHandler) SetupRoutes(r *mux.Router) {
 	r.Use(middlewares.EnableCORS)
-	r.HandleFunc("/urls", h.GetAllUrls).Methods(http.MethodGet)
-	r.HandleFunc("/urls", h.AddUrl).Methods(http.MethodPost)
-	r.HandleFunc("/{short_url}", h.GetUrl).Methods(http.MethodGet)
+	r.HandleFunc("/api/urls", h.GetAllUrls).Methods(http.MethodGet)
+	r.HandleFunc("/api/urls", h.AddUrl).Methods(http.MethodPost)
+	r.HandleFunc("/api/{short_url}", h.GetUrl).Methods(http.MethodGet)
 }
