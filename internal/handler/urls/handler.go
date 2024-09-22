@@ -2,8 +2,8 @@ package urls
 
 import (
 	"net/http"
-	"shrinklink/middlewares"
-	"shrinklink/service/urls"
+	"shrinklink/internal/middlewares"
+	"shrinklink/internal/service/urls"
 
 	"github.com/gorilla/mux"
 )

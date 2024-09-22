@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"shrinklink/config"
-	"shrinklink/logger"
+	"shrinklink/internal/logger"
 	"sync"
 	"time"
 

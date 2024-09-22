@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"shrinklink/config"
-	"shrinklink/models"
-	"shrinklink/utils"
+	"shrinklink/internal/models"
+	"shrinklink/internal/utils"
 )
 
 func (srv *UrlService) GetAllUrls(ctx context.Context) ([]map[string]string, error) {

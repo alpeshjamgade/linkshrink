@@ -1,10 +1,10 @@
 APP_BINARY=shrinklinkApp
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/shrinklink?sslmode=disable"
-MIGRATION_PATH="./migrations/"
+MIGRATION_PATH="./internal/repo/migrations/"
 
 build:
 	@echo "Building shrinklink..."
-	CGO_ENABLED=0 go build -o _build/${APP_BINARY} main.go
+	CGO_ENABLED=0 go build -o _build/${APP_BINARY} ./cmd/main.go
 	@echo "Done!"
 
 run: build

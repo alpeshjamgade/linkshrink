@@ -3,7 +3,7 @@ package logger
 import (
 	"context"
 	"shrinklink/config"
-	"shrinklink/constants"
+	"shrinklink/internal/constants"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"

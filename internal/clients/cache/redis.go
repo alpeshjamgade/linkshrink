@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"shrinklink/config"
-	"shrinklink/logger"
+	"shrinklink/internal/logger"
 	"time"
 )
 
