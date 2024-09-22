@@ -64,17 +64,29 @@ func (h *UrlsHandler) AddUrl(w http.ResponseWriter, r *http.Request) {
 
 func (h *UrlsHandler) GetUrl(w http.ResponseWriter, r *http.Request) {
 	ctx := context.WithValue(r.Context(), constants.TRACE_ID, utils.GetUUID())
-	res := utils.HTTPResponse{Data: map[string]string{}, Status: "success", Message: ""}
 	req := mux.Vars(r)
 	url, err := h.service.GetUrlWithHash(ctx, req["short_url"])
-	if err != nil {
-		res.Status = "error"
-		res.Message = "Error while fetching url"
-		utils.WriteJSON(w, http.StatusBadRequest, res)
+	if err != nil || url == "" {
+		w.WriteHeader(http.StatusNotFound)
+
+		// Write HTML response
+		w.Header().Set("Content-Type", "text/html")
+		w.Write([]byte(`
+			<!DOCTYPE html>
+			<html lang="en">
+			<head>
+				<meta charset="UTF-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title>Not Found</title>
+			</head>
+			<body>
+				<p>Oops! This URL seems to have shrunk a little too much and disappeared! 🐭✨</p>
+				<p>It looks like it’s playing hide and seek. Maybe try a different one or check your spelling?</p>			</body>
+			</html>
+		`))
 		return
 	}
-	//utils.WriteJSON(w, http.StatusTemporaryRedirect, res, map[string][]string{"Location": {url}})
-	http.Redirect(w, r, url, http.StatusTemporaryRedirect)
+	http.Redirect(w, r, url, http.StatusMovedPermanently)
 	return
 
 }
